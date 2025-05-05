@@ -38,3 +38,16 @@ test('obj.minus가 스파이를 심고 리턴값을 바꾸게 mockImplementation
     expect(result2).toBe(5);
     expect(result3).toBe(1);
 });
+
+test('obj.minus가 스파이를 심고 리턴값이 다르게 나오게 mockReturnValue', () => {
+    jest.spyOn(obj, 'minus').mockReturnValueOnce(3).mockReturnValue(5); //함수를 바꿔끼기 보다는 리턴값만 바꿈
+
+    const result1 = obj.minus(2, 1);
+    const result2 = obj.minus(2, 1);
+    const result3 = obj.minus(2, 1);
+    console.log(obj.minus);
+    expect(obj.minus).toHaveBeenCalledTimes(3);
+    expect(result1).toBe(3);
+    expect(result2).toBe(5);
+    expect(result3).toBe(1);
+});
