@@ -67,3 +67,13 @@ test('obj.minus가 스파이를 심고 리턴값이 다르게 나오게 mockRetu
     expect(result3).toBe(1);
     spyFn.mockRestore();
 });
+
+//파일단위
+//모든 테스트 실행전에
+beforeAll(() => {}); // 데이터 베이스 연결 같은거?
+// 매번 실행 전에
+beforeEach(() => {}); //테스트 전에 뭐 변수 초기화 같은거
+//매번 실행 후에
+afterEach(() => {}); // 정리할때 mockRestore() 같은거
+//모든 테스트 실행 후에
+afterAll(() => {}); // 모든 테스트가 끝난 후에 beforeAll에서 한거 정리하는 용도로 많이 사용
