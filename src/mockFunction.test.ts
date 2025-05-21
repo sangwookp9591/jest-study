@@ -14,12 +14,17 @@ let spyFn;
 let beforeEachCount = 0;
 let afterEachCount = 0;
 
+//밖에 있을때는 바깥에 있는 모든 테스트에 전부 다 적용된다. 헷깔리면 파일을 나누자,
 beforeEach(() => {
     console.log('outside beforeEach ', beforeEachCount++);
 });
 afterEach(() => {
     console.log('outside afterEach ', afterEachCount++);
 });
+/** describe 사용처
+ 1. 테스트가 너무 많아서 테스트를 나눠야할때
+ 2. before, afterEach를 특정 그룹에서만 실행하고 싶을 때
+**/
 describe('beforeEach/ afterEach 적용', () => {
     beforeEach(() => {
         console.log('beforeEach ', beforeEachCount++);
