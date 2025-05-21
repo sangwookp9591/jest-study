@@ -13,15 +13,21 @@ import { obj } from './mockFunction';
 let spyFn;
 let beforeEachCount = 0;
 let afterEachCount = 0;
+
+beforeEach(() => {
+    console.log('outside beforeEach ', beforeEachCount++);
+});
+afterEach(() => {
+    console.log('outside afterEach ', afterEachCount++);
+});
 describe('beforeEach/ afterEach 적용', () => {
     beforeEach(() => {
         console.log('beforeEach ', beforeEachCount++);
-    }); //테스트 전에 뭐 변수 초기화 같은거
-    //매번 실행 후에
+    });
     afterEach(() => {
         console.log('afterEach ', afterEachCount++);
         jest.restoreAllMocks();
-    }); // 정리할때 mockRestore() 같은거
+    });
     test('obj.minus가 스파이를 심고 실행도 안되게', () => {
         spyFn = jest.spyOn(obj, 'minus').mockImplementation(); //mockImplementation 빈값을 입력해는것
         /**
