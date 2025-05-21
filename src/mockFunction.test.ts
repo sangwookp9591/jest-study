@@ -76,7 +76,10 @@ beforeAll(() => {}); // 데이터 베이스 연결 같은거?
 beforeEach(() => {}); //테스트 전에 뭐 변수 초기화 같은거
 //매번 실행 후에
 afterEach(() => {
-    spyFn.mockRestore();
+    // spyFn.mockRestore();
+    // jest.clearAllMocks(); //위처럼 안해도되게 제스트 자체에서 모든거를 클리어할수있는게 있음. 역할은 같음.
+    // jest.resetAllMocks();
+    jest.restoreAllMocks();
 }); // 정리할때 mockRestore() 같은거
 //모든 테스트 실행 후에
 afterAll(() => {}); // 모든 테스트가 끝난 후에 beforeAll에서 한거 정리하는 용도로 많이 사용
