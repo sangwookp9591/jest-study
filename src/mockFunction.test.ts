@@ -58,6 +58,11 @@ describe('beforeEach/ afterEach 적용', () => {
         //결과가 2-1인 1로 나와야하는데 5로나온게 success가 됨
         // spyFn.mockClear();
     });
+
+    afterAll(() => {
+        console.log('inside afterAll');
+    });
+    //  내부의 afterAll은 describe가 끝났을 때 실행이된다.
 });
 
 test('obj.minus가 스파이를 심고 리턴값을 바꾸게 mockImplementationOnce', () => {
