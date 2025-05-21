@@ -22,5 +22,6 @@ test('시간아 빨리가라!', (done) => {
         expect(message).toBe('success');
     });
 
-    jest.runAllTimers();
+    // jest.runAllTimers();
+    jest.advanceTimersByTime(10_000); //10초 흐르게
 });
