@@ -33,6 +33,7 @@ describe('beforeEach/ afterEach 적용', () => {
         console.log('afterEach ', afterEachCount++);
         jest.restoreAllMocks();
     });
+
     test('obj.minus가 스파이를 심고 실행도 안되게', () => {
         spyFn = jest.spyOn(obj, 'minus').mockImplementation(); //mockImplementation 빈값을 입력해는것
         /**
@@ -111,3 +112,7 @@ beforeAll(() => {}); // 데이터 베이스 연결 같은거?
 // }); // 정리할때 mockRestore() 같은거
 //모든 테스트 실행 후에
 afterAll(() => {}); // 모든 테스트가 끝난 후에 beforeAll에서 한거 정리하는 용도로 많이 사용
+
+test.skip('', () => {});
+test.todo('나중에 만들어야지');
+describe.skip('skip될 테스트', () => {});
