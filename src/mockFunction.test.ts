@@ -116,3 +116,10 @@ afterAll(() => {}); // 모든 테스트가 끝난 후에 beforeAll에서 한거 
 test.skip('', () => {});
 test.todo('나중에 만들어야지');
 describe.skip('skip될 테스트', () => {});
+
+//테스트와 같은것 외국에서 많이 사용
+it(' should be a', () => {});
+it.skip('', () => {});
+
+// it.skip과 같은거
+xit('', () => {});
