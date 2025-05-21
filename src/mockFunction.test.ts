@@ -10,8 +10,9 @@ import { obj } from './mockFunction';
  *  2. mockReset() , mockClear mockImplemntation(()=>{}) , 빈함수로 만들어버림
  *  3. mockRestore() // 아예 전부 없애버림
  */
+let spyFn;
 test('obj.minus가 스파이를 심고 실행도 안되게', () => {
-    const spyFn = jest.spyOn(obj, 'minus').mockImplementation(); //mockImplementation 빈값을 입력해는것
+    spyFn = jest.spyOn(obj, 'minus').mockImplementation(); //mockImplementation 빈값을 입력해는것
     /**
      * mockImplementation안에는 이렇게 생겼음.
      * mockImplementation(()=>{})
@@ -27,7 +28,7 @@ test('obj.minus가 스파이를 심고 실행도 안되게', () => {
 
 test('obj.minus가 스파이를 심고 리턴값을 바꾸게', () => {
     //가짜함수를 만들어서 그런행동을 못하게 봐꿈.
-    const spyFn = jest.spyOn(obj, 'minus').mockImplementation((a, b) => a + b); //mockImplementation 함수의 결과를 5로 갈아끼움
+    spyFn = jest.spyOn(obj, 'minus').mockImplementation((a, b) => a + b); //mockImplementation 함수의 결과를 5로 갈아끼움
     const result = obj.minus(2, 1);
     console.log(obj.minus);
     expect(obj.minus).toHaveBeenCalledTimes(1);
@@ -38,7 +39,7 @@ test('obj.minus가 스파이를 심고 리턴값을 바꾸게', () => {
 
 test('obj.minus가 스파이를 심고 리턴값을 바꾸게 mockImplementationOnce', () => {
     //가짜함수를 만들어서 그런행동을 못하게 봐꿈.
-    const spyFn = jest
+    spyFn = jest
         .spyOn(obj, 'minus')
         .mockImplementationOnce((a, b) => a + b) //mockImplementationOnce 한번만 가짜행동을 한다.
         .mockImplementationOnce(() => 5);
@@ -55,7 +56,7 @@ test('obj.minus가 스파이를 심고 리턴값을 바꾸게 mockImplementation
 });
 
 test('obj.minus가 스파이를 심고 리턴값이 다르게 나오게 mockReturnValue', () => {
-    const spyFn = jest.spyOn(obj, 'minus').mockReturnValueOnce(3).mockReturnValue(5); //함수를 바꿔끼기 보다는 리턴값만 바꿈
+    spyFn = jest.spyOn(obj, 'minus').mockReturnValueOnce(3).mockReturnValue(5); //함수를 바꿔끼기 보다는 리턴값만 바꿈
 
     const result1 = obj.minus(2, 1);
     const result2 = obj.minus(2, 1);
@@ -74,6 +75,8 @@ beforeAll(() => {}); // 데이터 베이스 연결 같은거?
 // 매번 실행 전에
 beforeEach(() => {}); //테스트 전에 뭐 변수 초기화 같은거
 //매번 실행 후에
-afterEach(() => {}); // 정리할때 mockRestore() 같은거
+afterEach(() => {
+    spyFn.mockRestore();
+}); // 정리할때 mockRestore() 같은거
 //모든 테스트 실행 후에
 afterAll(() => {}); // 모든 테스트가 끝난 후에 beforeAll에서 한거 정리하는 용도로 많이 사용
